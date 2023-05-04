@@ -1,4 +1,4 @@
-# KernelSU Action for OPLUS Kernel
+# KernelSU Action for Realme Kernel
 基于[此项目](https://github.com/xiaoleGun/KernelSU_Action)的魔改版本，一般适用于OPLUS内核的构建
 
 注:本项目不支持OPPO和一加的内核的编译，可以看看[这个项目](https://github.com/dabao1955/KernelSU_Action_OPLUS)
