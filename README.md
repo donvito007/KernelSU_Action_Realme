@@ -1,4 +1,104 @@
-# KernelSU Action for Realme Kernel
+KernelSU Action for Realme Kernel
+Based on the magic version of this project, it is generally suitable for the construction of the OPLUS kernel
+
+Note: This project does not support the compilation of OPPO and OnePlus kernels, you can take a look at this project
+
+Support for kernels
+4.14.x
+4.19.x
+use
+After successful compilation, AnyKernel3 will be uploaded, device checking has been turned off, please flash in Twrp.Action
+
+Fork this repository to your repository and edit config.env as follows, then click, you can see the options on the left, click on the options will see the top of the large dialog box on the right, click on it will start the build.ActionBuild KernelRun workflows
+
+You will need to verify and fill in the following content. Typically, these configurations are stored in config.env
+Kernel Source
+Enter the download address of the kernel repository archive
+
+The format is: https://github.com/内核所有者名称/内核仓库名称/archive/内核提交id(在源码地址主页后面输入commit然后访问点击最新的提交再查看链接地址的commits/后面的字符).tar.gz
+
+Kernel Vendor
+Enter the additional source code file for the kernel Concentrate:如果你的内核源码没有附加仓库的话，请将此项改为false
+
+Kernel Defconfig
+Enter the kernel configuration file name
+
+Target Arch
+For example: arm64
+
+Kernel File
+Fill in the image that needs to be flashed, which is generally the same as the BOARD_KERNEL_IMAGE_NAME in your aosp-device tree
+
+For example: Image.gz-dtb
+
+Clang
+Use Custom Clang
+Change to true You can use the official Clarang in addition to Google, such as Proton-Clang
+
+Custom Clang
+Support direct links to GitHub repositories or zip archives
+
+Custom Clang Commands
+I have used custom clang, so I should change the compiler position myself:)
+
+Clang Branch
+This option provides the option to customize Google's upstream branches, the main ones being branches
+
+Clang branches
+master
+master-kernel-build-2021
+master-kernel-build-2022
+Or other branches, please look in https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 according to your needs
+
+Clang Version
+Enter the version of Clang that you want to use
+
+Clang version	Corresponds to the Android version	AOSP-Clang version
+12.0.5	Android S	r416183b
+14.0.6	Android T	r450784d
+14.0.7		r450784e
+15.0.1		r458507
+It is generally possible to compile most kernelsClang124.14 及以上
+
+Extra Build Commands
+Some kernels need to manually add some compilation commands to compile normally, and do not fill in if they are not needed Separate commands with spaces
+
+For example: LLVM=1 LLVM_IAS=1
+
+Disable LTO
+Used to optimize the kernel, but sometimes it causes errors, so provide to disable it, set to true to disable
+
+Use KernelSU
+Whether to use KernelSU to troubleshoot kernel or compile kernels separately
+
+KernelSU Branch or Tag
+Select the branch or tag of KernelSU:
+
+Main branch (development version): KERNELSU_TAG=main
+Latest TAG (stable version): KERNELSU_TAG=
+Specify TAG (such as): v0.5.2KERNELSU_TAG=v0.5.2
+Use Kprobes
+If your kernel Kprobes is working properly, change this to true to automatically inject parameters into defconfig
+
+Use overlayfs
+If the kernel does not have this parameter, please enable it, the module needs it
+
+Need DTBO
+If your kernel also needs to flash DTBO, set to true
+
+Make Boot Image
+Set to true will compile boot.img, which you need to provideSource boot image
+
+Source Boot Image
+Therefore, to provide a boot image that the source system can boot normally, you need a direct link, preferably the same set of kernel source code and the same set of device tree for your current system built from aosp. ramdisk contains partition tables and init, without which the image built will not boot properly.
+
+Special thanks
+AnyKernel3
+AOSP
+KernelSU
+xiaoxindada
+kernelSU_Action
+KernelSU Action for Realme Kernel
 基于[此项目](https://github.com/xiaoleGun/KernelSU_Action)的魔改版本，一般适用于OPLUS内核的构建
 
 注:本项目不支持OPPO和一加的内核的编译，可以看看[这个项目](https://github.com/dabao1955/KernelSU_Action_OPLUS)
